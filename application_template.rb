@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'meta_tags'
+gem 'secure_headers'
 
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
@@ -68,10 +69,28 @@ after_bundle do
     create_file 'app/assets/javascripts/application.js' do
       <<-EOF
       //= require jquery
+      //= require jquery_ujs
       //= require bootstrap-sprockets
+      //= require turbolinks
+      //= require_tree .
+      //= require_self
       EOF
     end
 
+    create_file 'app/config/initializers/secure_headers.rb' do
+      <<-EOF
+      SecureHeaders::Configuration.default do |config|
+        config.csp = SecureHeaders::OPT_OUT
+        config.x_frame_options = SecureHeaders::OPT_OUT
+        config.x_content_type_options = SecureHeaders::OPT_OUT
+        config.x_xss_protection = SecureHeaders::OPT_OUT
+        config.x_download_options = SecureHeaders::OPT_OUT
+        config.x_permitted_cross_domain_policies = SecureHeaders::OPT_OUT
+        config.referrer_policy = SecureHeaders::OPT_OUT
+        config.hsts = SecureHeaders::OPT_OUT
+      end
+      EOF
+    end
     # Devise
     generate 'devise:install'
     environment "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }", env: 'development'
