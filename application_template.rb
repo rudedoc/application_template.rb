@@ -37,6 +37,8 @@ gem_group :development, :test do
   gem 'factory_girl_rails'
   gem 'annotate'
   gem 'ffaker'
+  gem 'timecop'
+  gem 'shoulda'
 end
 
 gem_group :development do
