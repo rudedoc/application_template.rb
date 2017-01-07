@@ -3,7 +3,7 @@ run 'touch Gemfile'
 add_source 'https://rubygems.org'
 
 # Rails 5
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -17,7 +17,7 @@ gem 'meta_tags'
 gem 'secure_headers'
 
 gem 'font-awesome-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.alpha5'
 
 gem 'devise'
 gem 'pundit'
@@ -42,10 +42,14 @@ gem_group :development, :test do
 end
 
 gem_group :development do
-  gem 'web-console'
+  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
 end
 
 after_bundle do
@@ -62,7 +66,6 @@ after_bundle do
     remove_file 'app/assets/stylesheets/application.css'
     create_file 'app/assets/stylesheets/application.scss' do
       <<-EOF
-      @import "bootstrap-sprockets";
       @import "bootstrap";
       EOF
     end
