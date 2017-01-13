@@ -1,6 +1,5 @@
 remove_file 'Gemfile'
 run 'touch Gemfile'
-add_source 'https://rubygems.org'
 
 # Rails 5
 gem 'rails', '~> 5.0.1'
@@ -46,10 +45,6 @@ gem_group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.0'
 end
 
 after_bundle do
@@ -117,13 +112,10 @@ after_bundle do
         <head>
           <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-          <title>Bootstrap 101 Template</title>
-
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <%= csrf_meta_tags %>
-
           <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+          <title>Bootstrap 101 Template</title>
         </head>
         <body>
           <%= yield %>
