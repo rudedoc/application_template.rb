@@ -1,9 +1,11 @@
 remove_file 'Gemfile'
 run 'touch Gemfile'
+add_source 'https://rubygems.org'
 
 # Rails 5
 gem 'rails', '~> 5.0.1'
-gem 'pg', '~> 0.18'
+gem 'mysql2'                   if yes?("mysql?")
+gem 'pg'                       if yes?("pg?")
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -27,6 +29,8 @@ gem 'capistrano-rvm'
 gem 'capistrano-unicorn-nginx'
 
 gem 'whenever', require: false
+gem 'premailer-rails'
+
 
 gem_group :development, :test do
   gem 'byebug', platform: :mri
